@@ -44,11 +44,12 @@ namespace Restaurants.Controllers
                 {
                     dbModels.Contacts.Add(contact);
                     dbModels.SaveChanges();
-                    MailMessage mailMessage = new MailMessage("noreply.com", contact.email, "Enquiry Confirmation", contact.message);
+                    MailMessage mailMessage = new MailMessage("bulmaBula@gmail.com", contact.email, "Enquiry Confirmation", contact.message);
                     mailMessage.IsBodyHtml = true;
                     SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                     client.EnableSsl = true;
                     client.Credentials = new System.Net.NetworkCredential("bulmaBula@gmail.com", "Test123$");
+                    Console.WriteLine("Sending email");
                     client.Send(mailMessage);
 
 
