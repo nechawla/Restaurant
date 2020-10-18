@@ -81,3 +81,5 @@ C:\Users\neelu\source\repos\Restaurants\Restaurants\bin\EntityFramework.dll
 C:\Users\neelu\source\repos\Restaurants\Restaurants\bin\EntityFramework.SqlServer.dll
 C:\Users\neelu\source\repos\Restaurants\Restaurants\bin\EntityFramework.xml
 C:\Users\neelu\source\repos\Restaurants\Restaurants\bin\EntityFramework.SqlServer.xml
+C:\Users\neelu\source\repos\Restaurants\Restaurants\obj\Debug\Restaurants.Properties.Resources.resources
+C:\Users\neelu\source\repos\Restaurants\Restaurants\obj\Debug\Restaurants.csproj.GenerateResource.cache

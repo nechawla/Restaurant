@@ -14,8 +14,8 @@
     <Key>
       <PropertyRef Name="key" />
     </Key>
-    <Property Name="key" Type="int" Nullable="false" />
-    <Property Name="text" Type="varchar" MaxLength="50" />
+    <Property Name="key" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="text" Type="nvarchar(max)" />
     <Property Name="image" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Orders">

@@ -20,13 +20,23 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("About", "Index", "About")</li>
                     <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
-                    <li>@Html.ActionLink("Registration", "Create", "User")</li>
+                    @if (Request.Cookies["userEmail"] == null)
+                    {
+                        <li style="position: absolute !important;right: 0;top: 0;">@Html.ActionLink("Login", "Index", "Login")</li>
+                    }
+
                 </ul>
+                @if (Request.Cookies["userEmail"] != null)
+                {
+                    <p style="color:white;text-align:end">Welcome @Request.Cookies["userEmail"].Value    @Html.ActionLink("Logout", "Logout", "Login")</p>
+
+                }
             </div>
+          
         </div>
+       
     </div>
     <div class="container body-content">
         @RenderBody()

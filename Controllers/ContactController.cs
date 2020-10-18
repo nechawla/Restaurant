@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
 using Restaurants.Models;
-
+using System.IO;
 namespace Restaurants.Controllers
 {
     public class ContactController : Controller
@@ -20,6 +20,8 @@ namespace Restaurants.Controllers
             }
            
         }
+
+     
 
         // GET: Contact/Details/5
         public ActionResult Details(int id)
@@ -104,6 +106,22 @@ namespace Restaurants.Controllers
             {
                 return View();
             }
+        }
+
+
+        public FileResult Download()
+        {
+         
+            using (DBModels dbModel = new DBModels())
+            {
+                String path = Server.MapPath("~/Resources");
+                var file= dbModel.i18N.Where(x => x.key.Equals("NewsLetter")).FirstOrDefault();
+                String fileName = Path.GetFileName(file.image);
+                String fullPath = Path.Combine(path, fileName);
+                return File(fullPath, "application/pdf");
+            }
+          
+           
         }
     }
 }

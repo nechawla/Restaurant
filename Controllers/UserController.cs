@@ -20,9 +20,13 @@ namespace Restaurants.Controllers
         }
 
         // GET: User/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(String email)
         {
-            return View();
+
+            using (DBModels dbModel = new DBModels())
+            {
+                return View(dbModel.Users.Where(x => x.email.Equals(email)).FirstOrDefault());
+            }
         }
 
         // GET: User/Create
@@ -41,8 +45,7 @@ namespace Restaurants.Controllers
                 // TODO: Add insert logic here
                 using (DBModels dbModel = new DBModels())
                 {
-                    Console.WriteLine("Entered create");
-
+                  
                     dbModel.Users.Add(user);
                     dbModel.SaveChanges();
                     MailMessage mailMessage = new MailMessage("bulmaBula@gmail.com", user.email, "Registration is confirmed","You can now access the website with your credentials" );
@@ -63,20 +66,29 @@ namespace Restaurants.Controllers
         }
 
         // GET: User/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(String email)
         {
-            return View();
+            using (DBModels dbModel = new DBModels())
+            {
+                return View(dbModel.Users.Where(x => x.email.Equals(email)).FirstOrDefault());
+            }
+        
         }
 
         // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, User user)
         {
             try
             {
-                // TODO: Add update logic here
+                using (DBModels dbModel = new DBModels())
+                {
+                    dbModel.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    dbModel.SaveChanges();
+                }
+                    // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
             }
             catch
             {
@@ -85,17 +97,27 @@ namespace Restaurants.Controllers
         }
 
         // GET: User/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(String email)
         {
-            return View();
+            using (DBModels dbModel = new DBModels())
+            {
+                return View(dbModel.Users.Where(x => x.email.Equals(email)).FirstOrDefault());
+            }
+
         }
 
         // POST: User/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(String email, User user)
         {
             try
             {
+                using (DBModels dbModel = new DBModels())
+                {
+                    user = dbModel.Users.Where(x => x.email.Equals(email)).FirstOrDefault();
+                    dbModel.Users.Remove(user);
+                    dbModel.SaveChanges();
+                }
                 // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
